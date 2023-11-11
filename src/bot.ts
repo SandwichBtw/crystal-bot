@@ -1,8 +1,9 @@
-import { Client, GatewayIntentBits, Partials, Collection } from 'discord.js'
+import { GatewayIntentBits, Partials } from 'discord.js'
 import { getConfig } from './modules/config'
+import CrystalClient from './types/CrystalClient'
 
 const config = getConfig()
-const client = new Client({
+const client = new CrystalClient({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMembers,

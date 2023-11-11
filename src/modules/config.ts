@@ -2,7 +2,7 @@ import { Config } from '../types/Config';
 import dotenv from 'dotenv';
 
 export function getConfig(): Config {
-    dotenv.config({path: '../../.env'})
+    dotenv.config({path: '../.env'})
 
     return {
         token: `${process.env.TOKEN}`,
