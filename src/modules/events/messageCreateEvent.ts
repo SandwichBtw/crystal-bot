@@ -2,8 +2,6 @@ import { Message } from "discord.js";
 import { Event } from "../../types/Event"
 import CrystalClient from "../../types/CrystalClient";
 import { getConfig } from "../config";
-import { Command } from "../../types/Command";
-
 let config = getConfig();
 
 module.exports = {
@@ -16,6 +14,8 @@ module.exports = {
         for (let command of CrystalClient.commands.keys()) {
             let commandName = message.content.substring(1)
             if(command === commandName) {
+                if(CrystalClient.commands.get(command) == undefined) throw new Error("Unable to run command " + commandName);
+                // It's safe to use ! because we've already checked for undefined
                 CrystalClient.commands.get(command)!(message, client);
             }
         }
