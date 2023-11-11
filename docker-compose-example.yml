@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  crystal-bot:
+    container_name: crystal-bot
+    restart: unless-stopped
+    build:
+      context: .
+    environment:
+      - TOKEN=YOURTOKENHERE
+      - PREFIX=.
+      - ADMINS=1234
+      - SHARDS=1

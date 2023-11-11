@@ -9,13 +9,18 @@
     "tsc": "tsc"
   },
   "keywords": [],
-  "author": "SandwichBtw",
+  "author": "SandwichBtw, TerrorByteTW",
   "license": "ISC",
   "dependencies": {
     "discord.js": "^14.13.0",
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.3.1",
+    "glob": "^10.3.10",
+    "pg": "^8.11.3",
+    "postgres": "^3.4.3"
   },
   "devDependencies": {
+    "@types/node": "^20.9.0",
+    "@types/pg": "^8.10.9",
     "typescript": "^5.2.2"
   }
 }
