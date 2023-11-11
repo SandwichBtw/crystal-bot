@@ -21,7 +21,7 @@ export async function loadEvents(client: CrystalClient) {
                 client.rest[event.once ? "once": "on"](event.name as keyof RestEvents, execute) : 
                 client[event.once ? "once": "on"](event.name, execute);
 
-            client.events.set(event.name, execute);
+            CrystalClient.events.set(event.name, execute);
             events.push({ Event: event.name, Status: "✅"})
 
         } catch (error) {
