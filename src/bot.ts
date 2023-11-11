@@ -1,10 +1,7 @@
 import { Client, GatewayIntentBits } from 'discord.js'
 import { getConfig } from './modules/config'
-import dotenv from 'dotenv'
 
-dotenv.config()
 const config = getConfig()
-
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
