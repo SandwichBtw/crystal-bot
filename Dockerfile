@@ -6,6 +6,9 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 RUN npm install
+
+COPY . .
+
 RUN npm run tsc
 
 # Run
@@ -15,7 +18,7 @@ WORKDIR /usr/src/app
 
 COPY *package*.json ./
 
-RUN npm install --only=production
+RUN npm install --omit=dev
 
 COPY --from=build /usr/src/app/out ./
 
