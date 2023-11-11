@@ -18,9 +18,4 @@ const client = new CrystalClient({
     ]
 })
 
-client.on('ready', bot => {
-    console.log(`Logged in as ${bot.user.tag}`)
-})
-
-
 client.login(config.token)

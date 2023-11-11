@@ -1,5 +1,6 @@
 import { Client } from "discord.js";
 import { Event } from "../../types/Event"
+
 module.exports = {
     name: "ready",
     once: false,
@@ -9,6 +10,6 @@ module.exports = {
     execute: function (...args: [client: Client<true>]): void {
         // To access the client object, reference args[0] like this
         // const client: Client = args[0];
-        console.log("The event has been loaded!")
+        console.log(`Logged in as ${args[0].user.tag}`)
     }
 } as Event

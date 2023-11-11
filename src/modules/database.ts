@@ -1,17 +1,9 @@
-// Well see what happens here, for now I just made this file for fun.
 // PostgreSQL database connection.
-// yes and im gonna log when it connects and I wanna make the log rn 
-// Ahh so you want to be able to access a Postgres DB?
 // https://www.npmjs.com/package/postgres
 import { Pool, Client } from 'pg';
 import { getConfig } from './config';
 
-const databaseConnection: boolean = true
-
-// databaseConnection ? console.log("The client is now connected to the database.")
-
 const config = getConfig()
-
 const pool = new Pool({
   user: `${config.postgresConfig.username}`,
   host: `${config.postgresConfig.host}`,
