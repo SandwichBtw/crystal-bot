@@ -1,9 +1,9 @@
-import { Message } from "discord.js";
-import { Command } from "../../types/Command";
+import { type Message } from "discord.js";
+import { type Command } from "../../types/Command";
 
 module.exports = {
     name: 'help',
     execute: function(message: Message) {
-        message.reply("Hey")
+        void message.reply("Hey")
     }
-} as Command
+} satisfies Command

@@ -1,4 +1,4 @@
-import { RestEvents } from "discord.js"
+import { type RestEvents } from "discord.js"
 
 export type Event = {
     name: keyof RestEvents | string,

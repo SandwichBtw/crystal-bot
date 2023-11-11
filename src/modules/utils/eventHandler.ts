@@ -1,21 +1,22 @@
-import { RestEvents } from 'discord.js'
+import { type RestEvents } from 'discord.js'
 import { loadFiles } from './fileLoader'
-import { Event } from '../../types/Event'
+import { type Event } from '../../types/Event'
 import CrystalClient from '../../types/CrystalClient';
 
-export async function loadEvents(client: CrystalClient) {
+export async function loadEvents(client: CrystalClient): Promise<void> {
     console.time("Events loaded");
 
-    const events = new Array();
+    const events = [];
 
     const files = await loadFiles("modules/events");
 
     for (const file of files) {
         try {
+            // eslint-disable-next-line @typescript-eslint/no-var-requires
             const event: Event = require(file);
             if (event.name == null) throw new Error("Invalid event file")
 
-            const execute = (...args: any[]) => event.execute(...args);
+            const execute = (...args: any[]): void => { event.execute(...args); };
             
             event.rest ? 
                 client.rest[event.once ? "once": "on"](event.name as keyof RestEvents, execute) : 

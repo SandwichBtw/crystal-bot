@@ -18,4 +18,4 @@ const client = new CrystalClient({
     ]
 })
 
-client.login(config.token)
+void client.login(config.token)

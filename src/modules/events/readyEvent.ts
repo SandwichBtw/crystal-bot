@@ -1,5 +1,5 @@
-import { Client } from "discord.js";
-import { Event } from "../../types/Event"
+import { type Client } from "discord.js";
+import { type Event } from "../../types/Event"
 
 module.exports = {
     name: "ready",
@@ -8,4 +8,4 @@ module.exports = {
     execute: function (client: Client<true>): void {
         console.log(`Logged in as ${client.user.tag}`)
     }
-} as Event
+} satisfies Event

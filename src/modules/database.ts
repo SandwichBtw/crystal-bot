@@ -1,6 +1,6 @@
 // PostgreSQL database connection.
 // https://www.npmjs.com/package/postgres
-import { Pool, Client } from 'pg';
+import { Pool } from 'pg';
 import { getConfig } from './config';
 
 const config = getConfig()

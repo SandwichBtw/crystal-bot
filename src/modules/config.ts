@@ -1,4 +1,4 @@
-import { Config } from '../types/Config';
+import { type Config } from '../types/Config';
 import dotenv from 'dotenv';
 
 export function getConfig(): Config {
