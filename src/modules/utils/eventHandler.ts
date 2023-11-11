@@ -16,7 +16,7 @@ export async function loadEvents(client: CrystalClient): Promise<void> {
             const event: Event = require(file);
             if (event.name == null) throw new Error("Invalid event file")
 
-            const execute = (...args: any[]): void => { event.execute(...args); };
+            const execute = (...args: any[]): void => { void event.execute(...args); };
             
             event.rest ? 
                 client.rest[event.once ? "once": "on"](event.name as keyof RestEvents, execute) : 

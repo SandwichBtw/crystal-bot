@@ -1,23 +1,15 @@
-import { type Message } from "discord.js";
+import { type ChatInputCommandInteraction } from "discord.js";
 import { type Event } from "../../types/Event"
 import CrystalClient from "../../types/CrystalClient";
-import { getConfig } from "../config";
-const config = getConfig();
 
 module.exports = {
-    name: "messageCreate",
+    name: "interactionCreate",
     once: false,
     rest: false,
-    execute: function (message: Message, client: CrystalClient) {
-        if (!message.content.startsWith(config.prefix)) return
-        if (message.author.bot) return
-        for (const command of CrystalClient.commands.keys()) {
-            const commandName = message.content.substring(1)
-            if(command === commandName) {
-                if(CrystalClient.commands.get(command) === undefined) throw new Error("Unable to run command " + commandName);
-                // It's safe to use ?. because we've already checked for undefined
-                CrystalClient.commands.get(command)?.(message, client);
-            }
-        }
+    execute: async function (interaction: ChatInputCommandInteraction, client: CrystalClient) {
+        if(!interaction.isChatInputCommand()) return;
+        const command = CrystalClient.commands.get(interaction.commandName);
+        if (command === null || command === undefined) await interaction.reply({ content: "This command does not exist", ephemeral: true});
+        command?.execute(interaction, client);
     }
 } satisfies Event

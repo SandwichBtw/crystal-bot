@@ -4,5 +4,5 @@ export type Event = {
     name: keyof RestEvents | string,
     once: boolean,
     rest: boolean,
-    execute: (...args: any[]) => void
+    execute: (...args: any[]) => void | Promise<void>
 }

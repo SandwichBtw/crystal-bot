@@ -1,9 +1,9 @@
 import { Client, type ClientOptions, Collection } from "discord.js";
 import { loadEvents } from "../modules/utils/eventHandler";
-import { loadCommands } from "../modules/utils/commandHandler";
+import { type Command } from "./Command";
 
 export default class CrystalClient extends Client {
-    static commands: Collection<string, (...args: any[]) => void>
+    static commands: Collection<string, Command>
     static events: Collection<string, (...args: any[]) => void>
     
     constructor(options: ClientOptions) {
@@ -12,7 +12,6 @@ export default class CrystalClient extends Client {
         CrystalClient.commands = new Collection()
         CrystalClient.events = new Collection()
 
-        void loadCommands(this);
         void loadEvents(this);
     }
 }
