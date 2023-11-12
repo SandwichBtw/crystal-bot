@@ -35,14 +35,8 @@ export async function getChannels(client: CrystalClient): Promise<void> {
         })
     }
 
-    console.table(channels, [
-        "Channel",
-        "ChannelId",
-        "Type",
-        "Guild",
-        "GuildId",
-    ])
+    console.table(channels, ["Channel", "ChannelId", "Type", "Guild", "GuildId"])
     console.info("\n\x1b[36m%s\x1b[0m", "Registered Channels")
 
-    console.timeEnd("Channels registered");
+    console.timeEnd("Channels registered")
 }

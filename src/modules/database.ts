@@ -1,19 +1,19 @@
 // PostgreSQL database connection.
 // https://www.npmjs.com/package/postgres
-import { Pool } from 'pg';
-import { getConfig } from './config';
+import { Pool } from "pg"
+import { getConfig } from "./config"
 
 const config = getConfig()
 const pool = new Pool({
-  user: `${config.postgresConfig.username}`,
-  host: `${config.postgresConfig.host}`,
-  database: `${config.postgresConfig.database}`,
-  password: `${config.postgresConfig.password}`,
-  port: config.postgresConfig.port ?? 5432
+    user: `${config.postgresConfig.username}`,
+    host: `${config.postgresConfig.host}`,
+    database: `${config.postgresConfig.database}`,
+    password: `${config.postgresConfig.password}`,
+    port: config.postgresConfig.port ?? 5432,
 })
 
-pool.on('error', (err, client) => {
-    console.error('Unexpected error on idle client', err)
+pool.on("error", (err, client) => {
+    console.error("Unexpected error on idle client", err)
     process.exit(-1)
 })
 

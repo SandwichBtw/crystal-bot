@@ -1,6 +1,6 @@
-import { GatewayIntentBits, Partials } from 'discord.js'
-import { getConfig } from './modules/config'
-import CrystalClient from './types/CrystalClient'
+import { GatewayIntentBits, Partials } from "discord.js"
+import { getConfig } from "./modules/config"
+import CrystalClient from "./types/CrystalClient"
 
 const config = getConfig()
 const client = new CrystalClient({
@@ -8,14 +8,9 @@ const client = new CrystalClient({
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildMembers,
         GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent
+        GatewayIntentBits.MessageContent,
     ],
-    partials: [
-        Partials.User,
-        Partials.Message,
-        Partials.GuildMember,
-        Partials.ThreadMember
-    ]
+    partials: [Partials.User, Partials.Message, Partials.GuildMember, Partials.ThreadMember],
 })
 
 void client.login(config.token)
