@@ -7,7 +7,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("dm")
         .setDescription("Send a direct message to someone using the bot."),
-    execute: async function (interaction: ChatInputCommandInteraction, client: CrystalClient) {
+    execute: async function (interaction: ChatInputCommandInteraction, client: CrystalClient): Promise<void> {
 
     }
 } satisfies Command

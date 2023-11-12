@@ -8,6 +8,6 @@ module.exports = {
         .setName("react")
         .setDescription("React to a message using the bot."),
     execute: async function (interaction: ChatInputCommandInteraction, client: CrystalClient) {
-
+        
     }
 } satisfies Command

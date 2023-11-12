@@ -8,6 +8,6 @@ module.exports = {
         .setName("pin")
         .setDescription("pin a message using the bot."),
     execute: async function (interaction: ChatInputCommandInteraction, client: CrystalClient) {
-
+        
     }
 } satisfies Command

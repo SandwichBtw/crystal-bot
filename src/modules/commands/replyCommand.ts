@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, type ChatInputCommandInteraction, TextChannel } from "discord.js";
+import { SlashCommandBuilder, type ChatInputCommandInteraction, type TextChannel } from "discord.js";
 import { type Command } from "../../types/Command";
 import type CrystalClient from "../../types/CrystalClient";
 
@@ -28,16 +28,16 @@ module.exports = {
         const botMessage = interaction.options.getString('message')
 
         try {
-            if (botMessage && messageId) {
+            if ((botMessage !== null) && (messageId !== null)) {
                 const targetMessage = await textChannel.messages.fetch(messageId);
 
-                targetMessage.reply(botMessage)
-                interaction.reply({
+                void targetMessage.reply(botMessage)
+                void interaction.reply({
                     content: "Your message was sent.",
                     ephemeral: true
                 })
             } else {
-                interaction.reply({
+                void interaction.reply({
                     content: "Your message could not get sent.",
                     ephemeral: true
                 })
