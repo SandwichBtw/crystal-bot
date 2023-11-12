@@ -5,8 +5,9 @@
   "main": "./src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && cd out && node index.js",
-    "tsc": "tsc"
+    "start": "npm run build && cd out && node index.js",
+    "build": "tsc",
+    "prebuild": "rimraf ./out"
   },
   "keywords": [],
   "author": "SandwichBtw, TerrorByteTW",
@@ -29,6 +30,7 @@
     "eslint-plugin-n": "^16.3.1",
     "eslint-plugin-promise": "^6.1.1",
     "prettier": "^3.0.3",
+    "rimraf": "^5.0.5",
     "typescript": "^5.2.2"
   }
 }

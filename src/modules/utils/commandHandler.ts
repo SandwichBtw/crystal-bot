@@ -27,6 +27,7 @@ export async function loadCommands(client: CrystalClient): Promise<void> {
         }
     }
 
+    await client.application?.commands.set([]);
     await client.application?.commands.set(commands);
 
     console.table(success, ["Command", "Status"])
