@@ -9,7 +9,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run tsc
+RUN npm run build
 
 # Run
 FROM node:21-alpine AS run
