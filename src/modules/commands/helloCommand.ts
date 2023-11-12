@@ -3,10 +3,10 @@ import { type Command } from "src/types/Command";
 import type CrystalClient from "src/types/CrystalClient";
 
 module.exports = {
-    name: 'help',
+    name: 'hello',
     data: new SlashCommandBuilder()
-    .setName("help")
-    .setDescription("Get help informationfrom the bot"),
+    .setName("hello")
+    .setDescription("Say hello!"),
     execute: function(interaction: ChatInputCommandInteraction, client: CrystalClient) {
         void interaction.reply({
             content: "Hey there!",
