@@ -3,10 +3,10 @@ import { type Command } from "../../types/Command";
 import type CrystalClient from "../../types/CrystalClient";
 
 module.exports = {
-    name: 'pin',
+    name: 'dm',
     data: new SlashCommandBuilder()
-        .setName("pin")
-        .setDescription("pin a message using the bot."),
+        .setName("dm")
+        .setDescription("Send a direct message to someone using the bot."),
     execute: async function (interaction: ChatInputCommandInteraction, client: CrystalClient) {
 
     }

@@ -1,6 +1,6 @@
 import { SlashCommandBuilder, type ChatInputCommandInteraction } from "discord.js";
-import { type Command } from "src/types/Command";
-import type CrystalClient from "src/types/CrystalClient";
+import { type Command } from "../../types/Command";
+import type CrystalClient from "../../types/CrystalClient";
 
 module.exports = {
     name: 'react',
