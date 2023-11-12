@@ -3,12 +3,12 @@
 
 Crystal Bot is a meme-bot designed to ~~annoy~~ interact with server members in the most funny yet unintrusive way possible.<br />
 It's also a bot built to be extensible, with methods to easily add events and commands my simply dropping in the new files.<br />
-The main point of this bot was to get practice with JavaScript, but also to build something fun for the members of our Discord server.
+The main point of this bot was to get practice with JavaScript, but also to build something fun for the members of our [Discord server.](https://discord.gg/c58f4Rsx7n)
 
 ## Contributors
 [SandwichBtw](https://github.com/sandwichbtw) - Original creator, developer<br />
 [TerrorByte](https://github.com/natereprogle) - Developer<br />
-[Wulfie](https://www.youtube.com/channel/UCPRnCzHV8OFdNEibckL2HSQ) - Project Maintainer<br />
+[Wulfie](https://www.youtube.com/@WulfieYT) - Artist<br />
 
 ## Features
 __ALL__ of these features are currently WIP, as this bot is largely just a skeleton. However, we plan on implementing some goofy features, here's a list of some of them!
