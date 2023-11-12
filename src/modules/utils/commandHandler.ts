@@ -31,6 +31,11 @@ export async function loadCommands(client: CrystalClient): Promise<void> {
     await client.application?.commands.set(commands);
 
     console.table(success, ["Command", "Status"])
+    // \n - Newline 
+    // \x1b[36m - Cyan 
+    // %s - string placeholder for console.info (Gets replaced with "Loaded Commands")
+    // \x1b[0m - reset
+    // https://gist.github.com/abritinthebay/d80eb99b2726c83feb0d97eab95206c4
     console.info("\n\x1b[36m%s\x1b[0m", "Loaded Commands")
     console.timeEnd("Commands loaded")
 }
