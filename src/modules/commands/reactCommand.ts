@@ -43,7 +43,7 @@ module.exports = {
                 })
             }
         } catch (error) {
-            console.error()
+            console.error(error)
         }
     }
 } satisfies Command

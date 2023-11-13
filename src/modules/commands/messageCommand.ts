@@ -23,7 +23,7 @@ module.exports = {
 
         try {
             if (botMessage !== null) {
-                void textChannel.send(botMessage)
+                void await textChannel.send(botMessage)
                 void await interaction.reply({
                     content: "Your message was sent.",
                     ephemeral: true
@@ -35,7 +35,7 @@ module.exports = {
                 })
             }
         } catch (error) {
-            console.error()
+            console.error(error)
         }
     }
 } satisfies Command

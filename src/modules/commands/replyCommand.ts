@@ -31,19 +31,19 @@ module.exports = {
             if ((botMessage !== null) && (messageId !== null)) {
                 const targetMessage = await textChannel.messages.fetch(messageId);
 
-                void targetMessage.reply(botMessage)
-                void interaction.reply({
+                void await targetMessage.reply(botMessage)
+                void await interaction.reply({
                     content: "Your message was sent.",
                     ephemeral: true
                 })
             } else {
-                void interaction.reply({
+                void await interaction.reply({
                     content: "Your message could not get sent.",
                     ephemeral: true
                 })
             }
         } catch (error) {
-            console.error()
+            console.error(error)
         }
     }
 } satisfies Command
