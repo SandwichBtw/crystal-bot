@@ -27,6 +27,7 @@ export async function loadEvents(client: CrystalClient): Promise<void> {
             CrystalClient.events.set(event.name, execute)
             events.push({ Event: event.name, Status: "✅" })
         } catch (error) {
+            console.error(error)
             events.push({ Event: file.replace(/\\/g, "/").split("/").pop()?.slice(0, -3), Status: "🛑" })
         }
     }
