@@ -11,12 +11,13 @@ export default class CrystalClient extends Client {
 
     constructor(options: ClientOptions) {
         super(options)
-        CrystalClient.client = this
 
         CrystalClient.commands = new Collection()
         CrystalClient.events = new Collection()
 
         void loadEvents(CrystalClient.client)
+        CrystalClient.client = this
+        
     }
 
     static getClient(): CrystalClient {
