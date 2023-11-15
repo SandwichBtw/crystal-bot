@@ -6,7 +6,9 @@ import { loadCommands } from "../utils/commandHandler"
 
 module.exports = {
     name: "reload",
-    data: new SlashCommandBuilder().setName("reload").setDescription("reload the command, channels or events."),
+    data: new SlashCommandBuilder()
+        .setName("reload")
+        .setDescription("Reload the commands and events."),
     execute: async function (interaction: ChatInputCommandInteraction, client: CrystalClient) {
         console.log(`
         _____     _           _ _
@@ -15,6 +17,7 @@ module.exports = {
        |__|__|___|_|___|__,|___|_|_|_|_  |
                                      |___|
        `)
+
         void (await interaction.deferReply({ ephemeral: true }))
         void loadEvents(client)
         void loadCommands(client)
