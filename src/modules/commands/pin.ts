@@ -1,57 +1,56 @@
-import { SlashCommandBuilder, type ChatInputCommandInteraction, type TextChannel } from "discord.js";
-import { type Command } from "../../types/Command";
-import type CrystalClient from "../../types/CrystalClient";
+import { SlashCommandBuilder, type ChatInputCommandInteraction, type TextChannel } from "discord.js"
+import { type Command } from "../../types/Command"
+import type CrystalClient from "../../types/CrystalClient"
 
 module.exports = {
-    name: 'pin',
+    name: "pin",
     data: new SlashCommandBuilder()
         .setName("pin")
         .setDescription("pin a message using the bot.")
-        .addChannelOption((option) =>
+        .addChannelOption(option =>
+            option.setName("channel").setDescription("The channel you want to pin a message in.").setRequired(true)
+        )
+        .addStringOption(option =>
             option
-                .setName('channel')
-                .setDescription('The channel you want to pin a message in.')
-                .setRequired(true))
-        .addStringOption((option) =>
-            option
-                .setName('message_id')
-                .setDescription('The message you want to pin to using a message id.')
-                .setRequired(true)),
+                .setName("message_id")
+                .setDescription("The message you want to pin to using a message id.")
+                .setRequired(true)
+        ),
     execute: async function (interaction: ChatInputCommandInteraction, client: CrystalClient) {
-        const textChannel = interaction.options.getChannel('channel') as TextChannel
-        const messageId = interaction.options.getString('message_id')
+        const textChannel = interaction.options.getChannel("channel") as TextChannel
+        const messageId = interaction.options.getString("message_id")
 
         try {
             if (messageId !== null) {
                 const targetMessage = await textChannel.messages.fetch(messageId)
 
-                void await targetMessage.pin()
-                void await interaction.reply({
+                void (await targetMessage.pin())
+                void (await interaction.reply({
                     content: "Successfully pinned the message.",
-                    ephemeral: true
-                })
+                    ephemeral: true,
+                }))
             } else {
-                void await interaction.reply({
+                void (await interaction.reply({
                     content: "Unsuccessfully pinned the message.",
-                    ephemeral: true
-                })
+                    ephemeral: true,
+                }))
             }
         } catch (error: any) {
             switch (true) {
-                case error.message.includes('Unknown Message'):
-                    void await interaction.reply({
+                case error.message.includes("Unknown Message"):
+                    void (await interaction.reply({
                         content: "Unsuccessfully pinned the message: Invalid message id.",
-                        ephemeral: true
-                    })
+                        ephemeral: true,
+                    }))
                     break
                 default:
-                    void await interaction.reply({
+                    void (await interaction.reply({
                         content: "Unsuccessfully pinned the message.",
-                        ephemeral: true
-                    })
+                        ephemeral: true,
+                    }))
 
                     console.error(error)
             }
         }
-    }
+    },
 } satisfies Command

@@ -6,11 +6,11 @@ module.exports = {
     name: "interactionCreate",
     once: false,
     rest: false,
-    execute: async function (interaction: ChatInputCommandInteraction, client: CrystalClient) {
+    execute: async function (interaction: ChatInputCommandInteraction) {
         if (!interaction.isChatInputCommand()) return
         const command = CrystalClient.commands.get(interaction.commandName)
         if (command === null || command === undefined)
             await interaction.reply({ content: "This command does not exist", ephemeral: true })
-        command?.execute(interaction, client)
+        void command?.execute(interaction, CrystalClient.getClient())
     },
 } satisfies Event

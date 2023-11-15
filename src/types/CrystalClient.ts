@@ -7,13 +7,19 @@ export default class CrystalClient extends Client {
     static events: Collection<string, (...args: any[]) => void>
     static guilds: string[]
     static channels: GuildBasedChannel[] = []
+    private static client: CrystalClient
 
     constructor(options: ClientOptions) {
         super(options)
+        CrystalClient.client = this
 
         CrystalClient.commands = new Collection()
         CrystalClient.events = new Collection()
 
-        void loadEvents(this)
+        void loadEvents(CrystalClient.client)
+    }
+
+    static getClient(): CrystalClient {
+        return CrystalClient.client
     }
 }
