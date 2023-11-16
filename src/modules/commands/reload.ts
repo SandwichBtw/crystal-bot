@@ -9,7 +9,9 @@ const config = getConfig()
 
 module.exports = {
     name: "reload",
-    data: new SlashCommandBuilder().setName("reload").setDescription("reload the command, channels or events."),
+    data: new SlashCommandBuilder()
+        .setName("reload")
+        .setDescription("Reload the commands and events."),
     execute: async function (interaction: ChatInputCommandInteraction, client: CrystalClient) {
         if (config.admins.includes(interaction.user.id)) {
             console.log(`
