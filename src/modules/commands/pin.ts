@@ -40,20 +40,19 @@ module.exports = {
                     }))
                 }
             } catch (error: any) {
-                switch (true) {
-                    case error.message.includes("Unknown Message"):
-                        void (await interaction.reply({
-                            content: "Unsuccessfully pinned the message: Invalid message id.",
-                            ephemeral: true,
-                        }))
-                        break
-                    default:
-                        void (await interaction.reply({
-                            content: "Unsuccessfully pinned the message.",
-                            ephemeral: true,
-                        }))
+                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+                if (error.message.includes("Unknown Message")) {
+                    void (await interaction.reply({
+                        content: "Unsuccessfully pinned the message: Invalid message id.",
+                        ephemeral: true,
+                    }))
+                } else {
+                    void (await interaction.reply({
+                        content: "Unsuccessfully pinned the message.",
+                        ephemeral: true,
+                    }))
 
-                        console.error(error)
+                    console.error(error)
                 }
             }
         } else {
