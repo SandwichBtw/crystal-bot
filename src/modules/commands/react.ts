@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, type ChatInputCommandInteraction, type TextChannel } from "discord.js"
+import { SlashCommandBuilder, type ChatInputCommandInteraction, type TextChannel, type DiscordAPIError } from "discord.js"
 import { type Command } from "../../types/Command"
 import type CrystalClient from "../../types/CrystalClient"
 import { getConfig } from "../config"
@@ -48,14 +48,15 @@ module.exports = {
                     }))
                 }
             } catch (error: any) {
+                const errorTyped = error as DiscordAPIError
                 switch (true) {
-                    case error.message.includes("Unknown Message"):
+                    case errorTyped.message.includes("Unknown Message"):
                         void (await interaction.reply({
                             content: "The reaction failed: Invalid message id.",
                             ephemeral: true,
                         }))
                         break
-                    case error.message.includes("Unknown Emoji"):
+                    case errorTyped.message.includes("Unknown Emoji"):
                         void (await interaction.reply({
                             content: "The reaction failed: Invalid emoji(s).",
                             ephemeral: true,

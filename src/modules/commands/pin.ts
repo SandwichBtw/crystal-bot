@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, type ChatInputCommandInteraction, type TextChannel } from "discord.js"
+import { SlashCommandBuilder, type ChatInputCommandInteraction, type TextChannel, type DiscordAPIError } from "discord.js"
 import { type Command } from "../../types/Command"
 import type CrystalClient from "../../types/CrystalClient"
 import { getConfig } from "../config"
@@ -23,6 +23,7 @@ module.exports = {
         if (config.admins.includes(interaction.user.id)) {
             const textChannel = interaction.options.getChannel("channel") as TextChannel
             const messageId = interaction.options.getString("message_id")
+            void (await interaction.deferReply({ ephemeral: true }))
 
             try {
                 if (messageId !== null) {
@@ -40,8 +41,8 @@ module.exports = {
                     }))
                 }
             } catch (error: any) {
-                // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-                if (error.message.includes("Unknown Message")) {
+                const errorTyped = error as DiscordAPIError
+                if (errorTyped.message.includes("Unknown Message")) {
                     void (await interaction.reply({
                         content: "Unsuccessfully pinned the message: Invalid message id.",
                         ephemeral: true,
@@ -52,14 +53,14 @@ module.exports = {
                         ephemeral: true,
                     }))
 
-                    console.error(error)
+                    console.error(JSON.stringify(errorTyped))
                 }
             }
         } else {
-            void await interaction.reply({
+            void (await interaction.reply({
                 content: "You do not have permission to use this command.",
-                ephemeral: true
-            })
+                ephemeral: true,
+            }))
         }
     },
 } satisfies Command
