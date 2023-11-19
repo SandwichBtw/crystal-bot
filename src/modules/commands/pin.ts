@@ -23,7 +23,6 @@ module.exports = {
         if (config.admins.includes(interaction.user.id)) {
             const textChannel = interaction.options.getChannel("channel") as TextChannel
             const messageId = interaction.options.getString("message_id")
-            void (await interaction.deferReply({ ephemeral: true }))
 
             try {
                 if (messageId !== null) {
