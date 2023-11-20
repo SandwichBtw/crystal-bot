@@ -84,6 +84,7 @@ module.exports = {
                                 await targetMessage.reply({
                                     files: [attachment],
                                 })
+                                reply = true
                             // If emojis isn't null
                         } else if (emojis != null) {
                             const targetMessage = await user?.dmChannel?.messages.fetch(messageId)
@@ -92,11 +93,20 @@ module.exports = {
                             for (const emoji of emojiArray) {
                                 if (targetMessage != null) await targetMessage.react(emoji.trim())
                             }
+                            reply = true
                             // If the *only* thing that was provided was a messageId, just pin it
                         } else {
                             const targetMessage = await user?.dmChannel?.messages.fetch(messageId)
 
                             if (targetMessage != null) await targetMessage.pin()
+                            reply = true
+                        }
+                    } else {
+                        if (attachment != null) {
+                            await user?.send({
+                                files: [attachment],
+                            })
+                            reply = true
                         }
                     }
                 }
