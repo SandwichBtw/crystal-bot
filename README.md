@@ -2,8 +2,8 @@
 ![Discord](https://img.shields.io/discord/1112124724990984292?logo=discord&label=Join%20the%20Discord&color=cornflowerblue&link=https%3A%2F%2Fdiscord.com%2Finvite%2Fc58f4Rsx7n)
 
 Crystal Bot is a meme-bot designed to ~~annoy~~ interact with server members in the most funny yet unintrusive way possible.<br />
-It's also a bot built to be extensible, with methods to easily add events and commands my simply dropping in the new files.<br />
-The main point of this bot was to get practice with JavaScript, but also to build something fun for the members of our [Discord server.](https://discord.gg/c58f4Rsx7n)
+It's also a bot built to be extensible, with methods to easily add events and commands by simply dropping in the new files.<br />
+The main point of this bot was to get practice with JavaScript, but also to build something fun for the members of our [Discord server](https://discord.gg/c58f4Rsx7n).
 
 ## Contributors
 [SandwichBtw](https://github.com/sandwichbtw) - Original creator, developer<br />
