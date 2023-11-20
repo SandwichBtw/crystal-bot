@@ -7,6 +7,8 @@ export async function loadEvents(client: CrystalClient): Promise<void> {
     console.time("Events loaded")
 
     const events = []
+    CrystalClient.events.clear();
+    client.removeAllListeners();
 
     const files = await loadFiles("modules/events")
 
