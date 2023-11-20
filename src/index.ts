@@ -8,4 +8,4 @@ manager.on("shardCreate", shard => {
     console.log(`Launched shard ${shard.id}`)
 })
 
-void manager.spawn()
+void manager.spawn({timeout: 9000000})

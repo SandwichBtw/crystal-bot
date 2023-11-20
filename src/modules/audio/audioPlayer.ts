@@ -2,7 +2,7 @@ import { createAudioPlayer, createAudioResource, joinVoiceChannel } from "@disco
 import { type VoiceBasedChannel } from "discord.js"
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-function spawnPlayerConnection(channel: VoiceBasedChannel, file: string): any {
+export function spawnPlayerConnection(channel: VoiceBasedChannel, file: string): any {
     const player = createAudioPlayer()
     // This string must be an audio file, either mp3 or ogg. FFmpeg will kick in if A) it's installed and B) a file type isn't defined.
     // In other words, if we know the type we should define it, otherwise we'll have an extremely extremely extremely minor performance loss
@@ -19,4 +19,10 @@ function spawnPlayerConnection(channel: VoiceBasedChannel, file: string): any {
     connection.subscribe(player)
 
     player.play(resource)
+
+    console.log("This is what the player variable returns.")
+    console.log(player)
+
+    console.log("This is what the resource variable returns.")
+    console.log(resource)
 }
