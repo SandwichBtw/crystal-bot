@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, type ChatInputCommandInteraction, type VoiceBasedChannel } from "discord.js"
+import { SlashCommandBuilder, type ChatInputCommandInteraction, type VoiceBasedChannel, ChannelType } from "discord.js"
 import { type Command } from "../../types/Command"
 import { spawnPlayerConnection } from "../audio/audioPlayer"
 
@@ -10,7 +10,8 @@ module.exports = {
         .addChannelOption((option) => option
             .setName('channel')
             .setDescription('The channel you want it to join.')
-            .setRequired(true)),
+            .setRequired(true)
+            .addChannelTypes(ChannelType.GuildVoice)),
     execute: async function (interaction: ChatInputCommandInteraction) {
         try {
             const channel = interaction.options.getChannel('channel')

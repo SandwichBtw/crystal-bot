@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, type ChatInputCommandInteraction, type TextChannel } from "discord.js"
+import { SlashCommandBuilder, type ChatInputCommandInteraction, type TextChannel, ChannelType } from "discord.js"
 import { type Command } from "../../types/Command"
 import type CrystalClient from "../../types/CrystalClient"
 import { getConfig } from "../config"
@@ -11,7 +11,7 @@ module.exports = {
         .setName("reply")
         .setDescription("Reply to a message using the bot.")
         .addChannelOption(option =>
-            option.setName("channel").setDescription("The channel to send the reply to.").setRequired(true)
+            option.setName("channel").setDescription("The channel to send the reply to.").setRequired(true).addChannelTypes(ChannelType.GuildText)
         )
         .addStringOption(option =>
             option
