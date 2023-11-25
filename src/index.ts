@@ -8,4 +8,8 @@ manager.on("shardCreate", shard => {
     console.log(`Launched shard ${shard.id}`)
 })
 
-void manager.spawn({timeout: 9000000})
+process.on("unhandledRejection", err => {
+    console.log((err as Error).stack, "error")
+})
+
+void manager.spawn()

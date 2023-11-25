@@ -26,8 +26,10 @@ export async function loadCommands(client: CrystalClient): Promise<void> {
         }
     }
 
-    await client.application?.commands.set([])
-    await client.application?.commands.set(commands)
+    // TODO: This should not always be fired, as it *will* eventually cause the bot to never go ready due to hitting the command registration daily limit.
+    // Gotta figure out how to get around that (Maybe purposely launching the bot with a config value or a command line flag?)
+    // await client.application?.commands.set([])
+    // await client.application?.commands.set(commands)
 
     console.table(success, ["Command", "Status"])
     // \n - Newline

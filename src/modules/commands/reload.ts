@@ -9,9 +9,7 @@ const config = getConfig()
 
 module.exports = {
     name: "reload",
-    data: new SlashCommandBuilder()
-        .setName("reload")
-        .setDescription("Reload the commands and events."),
+    data: new SlashCommandBuilder().setName("reload").setDescription("Reload the commands and events."),
     execute: async function (interaction: ChatInputCommandInteraction, client: CrystalClient) {
         if (config.admins.includes(interaction.user.id)) {
             console.log(`
@@ -27,10 +25,10 @@ module.exports = {
             void loadCommands(client)
             void (await interaction.editReply({ content: "Completed the reload." }))
         } else {
-            void await interaction.reply({
+            void (await interaction.reply({
                 content: "You do not have permission to use this command.",
-                ephemeral: true
-            })
+                ephemeral: true,
+            }))
         }
     },
 } satisfies Command

@@ -36,7 +36,11 @@ export async function getChannels(client: CrystalClient): Promise<void> {
     }
 
     console.table(channels, ["Channel", "ChannelId", "Type", "Guild", "GuildId"])
+    // \n - Newline
+    // \x1b[36m - Cyan
+    // %s - string placeholder for console.info (Gets replaced with "Registered Channels")
+    // \x1b[0m - reset
+    // https://gist.github.com/abritinthebay/d80eb99b2726c83feb0d97eab95206c4
     console.info("\n\x1b[36m%s\x1b[0m", "Registered Channels")
-
     console.timeEnd("Channels registered")
 }

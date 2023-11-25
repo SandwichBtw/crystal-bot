@@ -7,16 +7,18 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("join")
         .setDescription("Make the bot join a vc.")
-        .addChannelOption((option) => option
-            .setName('channel')
-            .setDescription('The channel you want it to join.')
-            .setRequired(true)
-            .addChannelTypes(ChannelType.GuildVoice)),
+        .addChannelOption(option =>
+            option
+                .setName("channel")
+                .setDescription("The channel you want it to join.")
+                .setRequired(true)
+                .addChannelTypes(ChannelType.GuildVoice)
+        ),
     execute: async function (interaction: ChatInputCommandInteraction) {
         try {
-            const channel = interaction.options.getChannel('channel')
+            const channel = interaction.options.getChannel("channel")
 
-            spawnPlayerConnection(channel as VoiceBasedChannel, "../../../assets/fortnite.ogg")
+            spawnPlayerConnection(channel as VoiceBasedChannel, "fortnite.mp3")
 
             void (await interaction.reply({
                 content: "Successfully joined the channel.",
