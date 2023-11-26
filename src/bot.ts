@@ -10,6 +10,7 @@ const client = new CrystalClient({
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildVoiceStates,
+        GatewayIntentBits.GuildMessageTyping
     ],
     partials: [Partials.User, Partials.Message, Partials.GuildMember, Partials.ThreadMember],
 })
