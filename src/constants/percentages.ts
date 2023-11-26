@@ -2,4 +2,6 @@
 
 export enum percentages {
     RATE_MESSAGE = 5,
+    RANDOM_REPLIES = 5,
+    SAME_MESSAGE = 5
 }
