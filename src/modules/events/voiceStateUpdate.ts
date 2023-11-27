@@ -2,6 +2,8 @@ import { type VoiceState, type VoiceBasedChannel } from "discord.js"
 import { type Event } from "../../types/Event"
 import { spawnPlayerConnection, disconnectPlayerConnection } from "../audio/audioPlayer"
 import { percentages } from "../../constants/percentages"
+import path from "node:path"
+import fs from "node:fs"
 
 module.exports = {
     name: "voiceStateUpdate",
@@ -26,7 +28,23 @@ module.exports = {
         const channel = newState.channel
 
         setTimeout(() => {
-            spawnPlayerConnection(channel, "raps/desks and chairs - Crystal Bot (ft. Wulfie).mp3")
+            spawnPlayerConnection(channel, `${subDir}/${mp3File}`)
         }, 1000)
+
+        function arrayRandomIndex<T>(array: T[]): T {
+            const randomIndex = Math.floor(Math.random() * array.length);
+            return array[randomIndex];
+        }
+
+        const assetsDirPath = path.resolve(__dirname, '..', '..', 'assets');
+
+        const subDirs = fs.readdirSync(assetsDirPath).filter(entry => {
+            return fs.statSync(path.resolve(assetsDirPath, entry)).isDirectory();
+        });
+        const subDir = arrayRandomIndex(subDirs);
+        const subDirPath = path.resolve(assetsDirPath, subDir);
+
+        const mp3Files = fs.readdirSync(subDirPath).filter(file => file.endsWith('.mp3'));
+        const mp3File = arrayRandomIndex(mp3Files)
     },
 } satisfies Event
