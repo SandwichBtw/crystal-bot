@@ -8,8 +8,8 @@ module.exports = {
     once: false,
     rest: false,
     execute: async function (oldState: VoiceState, newState: VoiceState) {
-        if (newState.member?.user.bot) return
-        if (newState.channel == undefined) {
+        if ((newState.member?.user.bot) === true) return
+        if (newState.channel == null ) {
             const channel = oldState.channel
 
             setTimeout(() => {
@@ -19,14 +19,14 @@ module.exports = {
         }
 
         if (Math.floor(Math.random() * 100) <= percentages.VC_DISCONNECT - 1) {
-            newState.disconnect()
+            void newState.disconnect()
             return
         }
 
         const channel = newState.channel
 
         setTimeout(() => {
-            spawnPlayerConnection(channel as VoiceBasedChannel, "fortnite.mp3")
-        }, 2000)
+            spawnPlayerConnection(channel, "raps/desks and chairs - Crystal Bot (ft. Wulfie).mp3")
+        }, 1000)
     },
 } satisfies Event

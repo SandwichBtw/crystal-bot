@@ -16,9 +16,13 @@ export function spawnPlayerConnection(channel: VoiceBasedChannel, file: string):
     // This string must be an audio file, either mp3 or ogg. FFmpeg will kick in if A) it's installed and B) a file type isn't defined.
     // In other words, if we know the type we should define it, otherwise we'll have an extremely extremely extremely minor performance loss
     const resource = createAudioResource(path.join(process.cwd(), "../assets", file))
-    player.play(resource)
+
+    setTimeout(() => {
+        player.play(resource)
+    }, 1000)
 }
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export function disconnectPlayerConnection(channel: VoiceBasedChannel) {
     const connection = getVoiceConnection(channel.guild.id);
     connection?.destroy()
