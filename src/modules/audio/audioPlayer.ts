@@ -1,4 +1,4 @@
-import { createAudioPlayer, createAudioResource, joinVoiceChannel } from "@discordjs/voice"
+import { createAudioPlayer, createAudioResource, getVoiceConnection, joinVoiceChannel } from "@discordjs/voice"
 import { type VoiceBasedChannel } from "discord.js"
 import path from "node:path"
 
@@ -17,4 +17,9 @@ export function spawnPlayerConnection(channel: VoiceBasedChannel, file: string):
     // In other words, if we know the type we should define it, otherwise we'll have an extremely extremely extremely minor performance loss
     const resource = createAudioResource(path.join(process.cwd(), "../assets", file))
     player.play(resource)
+}
+
+export function disconnectPlayerConnection(channel: VoiceBasedChannel) {
+    const connection = getVoiceConnection(channel.guild.id);
+    connection?.destroy()
 }
