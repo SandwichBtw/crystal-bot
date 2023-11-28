@@ -7,7 +7,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "npm run build && cd out && node index.js",
         "build": "tsc",
-        "prebuild": "rimraf ./out && cpy ./assets ./out/assets",
+        "prebuild": "rimraf ./out && cpy ./assets ./out",
         "postbuild": "echo ✅ Build complete",
         "lint": "eslint ./src/**"
     },
