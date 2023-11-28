@@ -11,6 +11,12 @@ module.exports = {
     rest: false,
     execute: async function (oldState: VoiceState, newState: VoiceState) {
         if ((newState.member?.user.bot) === true) return
+
+        if (newState.mute === true || oldState.mute === true || 
+            newState.deaf === true || oldState.deaf === true || 
+            newState.streaming === true || oldState.streaming === true ||
+            newState.selfVideo === true || oldState.selfVideo === true) return 
+
         if (newState.channel == null ) {
             const channel = oldState.channel
 
@@ -28,7 +34,7 @@ module.exports = {
         const channel = newState.channel
 
         setTimeout(() => {
-            spawnPlayerConnection(channel, `${subDir}/${mp3File}`)
+            spawnPlayerConnection(channel, audio)
         }, 1000)
 
         function arrayRandomIndex<T>(array: T[]): T {
@@ -46,5 +52,14 @@ module.exports = {
 
         const mp3Files = fs.readdirSync(subDirPath).filter(file => file.endsWith('.mp3'));
         const mp3File = arrayRandomIndex(mp3Files)
+        const audio = `${subDir}/${mp3File}`
+
+        if (audio.toString() === "calls/spotify premium subscription.mp3") {
+            channel.members.forEach(m => {
+                m.voice.setMute(true).catch(error => {
+                    console.error(error)
+                })
+    })
+        }
     },
 } satisfies Event
