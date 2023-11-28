@@ -2,6 +2,7 @@ import { type Event } from "../../types/Event"
 import { loadCommands } from "../utils/commandHandler"
 import { getChannels } from "../utils/channelRegistrar"
 import type CrystalClient from "../../types/CrystalClient"
+import { loadSchedules } from "../utils/messageScheduler"
 
 module.exports = {
     name: "ready",
@@ -10,6 +11,7 @@ module.exports = {
     execute: async function (client: CrystalClient): Promise<void> {
         await loadCommands(client)
         await getChannels(client)
+        await loadSchedules()
 
         console.log(`Logged in as ${client.user?.tag}`)
     },

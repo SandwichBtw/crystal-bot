@@ -12,7 +12,7 @@
         "lint": "eslint ./src/**"
     },
     "keywords": [],
-    "author": "SandwichBtw, TerrorByteTW",
+    "author": "SandwichBtw, TerrorByte, Wulfie",
     "license": "ISC",
     "dependencies": {
         "@discordjs/voice": "^0.16.0",
@@ -22,12 +22,14 @@
         "ffmpeg-static": "^5.2.0",
         "glob": "^10.3.10",
         "libsodium-wrappers": "^0.7.13",
+        "node-schedule": "^2.1.1",
         "opusscript": "^0.1.1",
         "pg": "^8.11.3",
         "postgres": "^3.4.3"
     },
     "devDependencies": {
         "@types/node": "^20.9.0",
+        "@types/node-schedule": "^2.1.4",
         "@types/pg": "^8.10.9",
         "@typescript-eslint/eslint-plugin": "^6.10.0",
         "@typescript-eslint/parser": "^6.10.0",
