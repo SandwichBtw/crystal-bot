@@ -7,6 +7,7 @@ export function getConfig(): Config {
     return {
         token: `${process.env.TOKEN}`,
         admins: process.env.ADMINS != null ? process.env.ADMINS.split(" ") : [],
+        channelId: `${process.env.CHANNEL_ID}`,
         shards: process.env.SHARDS != null ? parseInt(process.env.SHARDS) : 1,
         postgresConfig: {
             host: `${process.env.POSTGRES_HOST}`,
