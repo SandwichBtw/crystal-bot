@@ -20,6 +20,13 @@ export function spawnPlayerConnection(channel: VoiceBasedChannel, file: string):
     setTimeout(() => {
         player.play(resource)
     }, 1000)
+
+    player.addListener("stateChange", (oldOne, newOne) => {
+        if (newOne.status === "idle") {
+            connection.destroy()
+        }
+    });
+
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type

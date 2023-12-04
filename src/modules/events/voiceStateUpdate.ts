@@ -2,7 +2,7 @@ import { type VoiceState, type VoiceBasedChannel } from "discord.js"
 import { type Event } from "../../types/Event"
 import { spawnPlayerConnection, disconnectPlayerConnection } from "../audio/audioPlayer"
 import { percentages } from "../../constants/percentages"
-import path from "node:path"
+import path, { join } from "node:path"
 import fs from "node:fs"
 
 module.exports = {
@@ -12,54 +12,72 @@ module.exports = {
     execute: async function (oldState: VoiceState, newState: VoiceState) {
         if ((newState.member?.user.bot) === true) return
 
-        if (newState.mute === true || oldState.mute === true || 
-            newState.deaf === true || oldState.deaf === true || 
-            newState.streaming === true || oldState.streaming === true ||
-            newState.selfVideo === true || oldState.selfVideo === true) return 
+        const oldChannelID = oldState.channelId;
+        const newChannelID = newState.channelId;
 
-        if (newState.channel == null ) {
-            const channel = oldState.channel
+        const switchedChannel = (oldChannelID != null) && (newChannelID != null) && oldChannelID !== newChannelID;
+        const joinedChannel = (oldChannelID == null) && newChannelID;
+        const leftChannel = (oldChannelID != null) && (newChannelID == null);
 
+        if (switchedChannel) {
+            console.log(`${newState.member?.displayName} switched from ${oldState.channel?.name} to ${newState.channel?.name}`)
+            if (randomDisconnect()) return;
+            userJoin(newState.channel as VoiceBasedChannel)
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
+        } else if (joinedChannel) {
+            console.log(`${newState.member?.displayName} has joined ${newState.channel?.name}`)
+            if (randomDisconnect()) return;
+            userJoin(newState.channel as VoiceBasedChannel)
+        } else if (leftChannel) {
+            console.log(`${oldState.member?.displayName} has left ${oldState.channel?.name}`)
+            userDisconnect()
+        }
+
+        // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+        function randomDisconnect() {
+            if (Math.floor(Math.random() * 100) <= percentages.VC_DISCONNECT - 1) {
+                void newState.disconnect()
+                return true;
+            }
+        }
+
+        // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+        function userDisconnect() {
             setTimeout(() => {
-                disconnectPlayerConnection(channel as VoiceBasedChannel)
+                disconnectPlayerConnection(oldState.channel as VoiceBasedChannel)
             }, 500)
-            return
         }
 
-        if (Math.floor(Math.random() * 100) <= percentages.VC_DISCONNECT - 1) {
-            void newState.disconnect()
-            return
-        }
+        // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+        function userJoin(channel: VoiceBasedChannel) {
+            setTimeout(() => {
+                spawnPlayerConnection(channel, audio)
+            }, 1000)
 
-        const channel = newState.channel
+            function arrayRandomIndex<T>(array: T[]): T {
+                const randomIndex = Math.floor(Math.random() * array.length);
+                return array[randomIndex];
+            }
 
-        setTimeout(() => {
-            spawnPlayerConnection(channel, audio)
-        }, 1000)
+            const assetsDirPath = path.resolve(__dirname, '..', '..', 'assets');
 
-        function arrayRandomIndex<T>(array: T[]): T {
-            const randomIndex = Math.floor(Math.random() * array.length);
-            return array[randomIndex];
-        }
+            const subDirs = fs.readdirSync(assetsDirPath).filter(entry => {
+                return fs.statSync(path.resolve(assetsDirPath, entry)).isDirectory();
+            });
+            const subDirectory = arrayRandomIndex(subDirs);
+            const subDirPath = path.resolve(assetsDirPath, subDirectory);
 
-        const assetsDirPath = path.resolve(__dirname, '..', '..', 'assets');
+            const mp3Files = fs.readdirSync(subDirPath).filter(file => file.endsWith('.mp3'));
+            const mp3File = arrayRandomIndex(mp3Files)
+            const audio = `${subDirectory}/${mp3File}`
 
-        const subDirs = fs.readdirSync(assetsDirPath).filter(entry => {
-            return fs.statSync(path.resolve(assetsDirPath, entry)).isDirectory();
-        });
-        const subDir = arrayRandomIndex(subDirs);
-        const subDirPath = path.resolve(assetsDirPath, subDir);
-
-        const mp3Files = fs.readdirSync(subDirPath).filter(file => file.endsWith('.mp3'));
-        const mp3File = arrayRandomIndex(mp3Files)
-        const audio = `${subDir}/${mp3File}`
-
-        if (audio.toString() === "calls/spotify premium subscription.mp3") {
-            channel.members.forEach(m => {
-                m.voice.setMute(true).catch(error => {
-                    console.error(error)
+            if (audio.toString() === "calls/spotify premium subscription.mp3") {
+                channel.members.forEach(m => {
+                    m.voice.setMute(true).catch(error => {
+                        console.error(error)
+                    })
                 })
-    })
+            }
         }
     },
 } satisfies Event
