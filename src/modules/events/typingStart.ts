@@ -10,7 +10,7 @@ module.exports = {
         // This seems to fire every 10 seconds or so because of how discord handles typing.
         // We need to give this a cool down of 1 min for every user so it doesn't keep firing while someone is typing.
 
-        if (Math.floor(Math.random() * 100) <= percentages.SAME_MESSAGE -1) {
+        if (Math.floor(Math.random() * 100) <= percentages.TYPING_MESSAGE -1) {
             const typingChannel = typing.channel as TextChannel
 
             void await typingChannel.send({

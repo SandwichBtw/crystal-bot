@@ -2,7 +2,7 @@ import { type VoiceState, type VoiceBasedChannel } from "discord.js"
 import { type Event } from "../../types/Event"
 import { spawnPlayerConnection, disconnectPlayerConnection } from "../audio/audioPlayer"
 import { percentages } from "../../constants/percentages"
-import path, { join } from "node:path"
+import path from "node:path"
 import fs from "node:fs"
 
 module.exports = {
@@ -51,7 +51,7 @@ module.exports = {
         // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
         function userJoin(channel: VoiceBasedChannel) {
             setTimeout(() => {
-                spawnPlayerConnection(channel, audio)
+                spawnPlayerConnection(channel, audioPath)
             }, 1000)
 
             function arrayRandomIndex<T>(array: T[]): T {
@@ -59,19 +59,19 @@ module.exports = {
                 return array[randomIndex];
             }
 
-            const assetsDirPath = path.resolve(__dirname, '..', '..', 'assets');
+            const vcDirectory = path.resolve(__dirname, '..', '..', 'assets', 'vc');
 
-            const subDirs = fs.readdirSync(assetsDirPath).filter(entry => {
-                return fs.statSync(path.resolve(assetsDirPath, entry)).isDirectory();
+            const subDirectories = fs.readdirSync(vcDirectory).filter(entry => {
+                return fs.statSync(path.resolve(vcDirectory, entry)).isDirectory();
             });
-            const subDirectory = arrayRandomIndex(subDirs);
-            const subDirPath = path.resolve(assetsDirPath, subDirectory);
+            const subDirectory = arrayRandomIndex(subDirectories);
+            const subDirectoryPath = path.resolve(vcDirectory, subDirectory);
 
-            const mp3Files = fs.readdirSync(subDirPath).filter(file => file.endsWith('.mp3'));
+            const mp3Files = fs.readdirSync(subDirectoryPath).filter(file => file.endsWith('.mp3'));
             const mp3File = arrayRandomIndex(mp3Files)
-            const audio = `${subDirectory}/${mp3File}`
+            const audioPath = `${subDirectory}/${mp3File}`
 
-            if (audio.toString() === "calls/spotify premium subscription.mp3") {
+            if (audioPath.toString() === "calls/spotify premium subscription.mp3") {
                 channel.members.forEach(m => {
                     m.voice.setMute(true).catch(error => {
                         console.error(error)

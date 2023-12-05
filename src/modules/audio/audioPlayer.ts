@@ -15,7 +15,7 @@ export function spawnPlayerConnection(channel: VoiceBasedChannel, file: string):
 
     // This string must be an audio file, either mp3 or ogg. FFmpeg will kick in if A) it's installed and B) a file type isn't defined.
     // In other words, if we know the type we should define it, otherwise we'll have an extremely extremely extremely minor performance loss
-    const resource = createAudioResource(path.join(process.cwd(), "../assets", file))
+    const resource = createAudioResource(path.join(process.cwd(), "../assets/vc", file))
 
     setTimeout(() => {
         player.play(resource)
