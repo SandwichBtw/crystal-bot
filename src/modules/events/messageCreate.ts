@@ -26,7 +26,7 @@ module.exports = {
             return
         }
 
-        if (Math.floor(Math.random() * 100) >= percentages.SAME_MESSAGE - 1) {
+        if (Math.floor(Math.random() * 100) <= percentages.SAME_MESSAGE - 1) {
             void await message.reply({
                 // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
                 content: `${message}`,

@@ -1,0 +1,22 @@
+export const pollOptions = [
+    "Green paint",
+    "Airplane",
+    "Steering wheel",
+    "iPhone home button",
+    "Water",
+    "Tile floor",
+    "Glasses",
+    "Glasses (singular)",
+    "Memes",
+    "Drywall",
+    "Gaming",
+    "Water bottle",
+    "Grass",
+    "Discord",
+    "The universe",
+    "Pie",
+    "Door",
+    "Xbox",
+    "Google Earth",
+    "Metal"
+]
