@@ -5,7 +5,7 @@ const config = getConfig()
 const manager = new ShardingManager("./bot.js", { totalShards: config.shards, token: `${config.token}` })
 
 manager.on("shardCreate", shard => {
-    console.log(`Launched shard ${shard.id}`)
+    console.log(`Launched shard ${shard.id + 1}`)
 })
 
 process.on("unhandledRejection", err => {

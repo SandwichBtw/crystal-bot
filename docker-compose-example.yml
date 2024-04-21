@@ -7,12 +7,6 @@ services:
       context: .
     environment:
       - TOKEN=YOURTOKENHERE
-      - PREFIX=.
       - ADMINS=1234
       - SHARDS=1
       - CHANNEL_ID=YOURCHANNELIDHERE
-      - POSTGRES_HOST=127.0.0.1
-      - POSTGRES_USERNAME=postgres
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_PORT=5432
-      - POSTGRES_DATABASE=crystalbot
